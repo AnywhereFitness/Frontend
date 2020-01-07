@@ -52,7 +52,7 @@ export class Register extends Component {
             <input type="password" name="password" placeholder="Password" value={this.state.user.password}
               onChange={this.handleChange}
             />
-            <input type="text" name="role" placeholder="Role" value={this.state.user.role}
+            <input type="text" name="role" placeholder="Role: instructor" value={this.state.user.role}
               onChange={this.handleChange}
             />
             <button className="register-btn">
