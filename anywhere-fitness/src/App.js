@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Route } from "react-router-dom";
 import Home from "./components/instructors/Home";
@@ -68,8 +69,6 @@ class App extends React.Component {
       </div>
     );
   }
-}
-
 const mapStateToProps = state => {
   return {
     loggedIn: state.loginReducer.loggedIn,
