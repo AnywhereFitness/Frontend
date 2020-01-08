@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from "./API/axiosWithAuth";
-
+import axios from 'axios' //Michael: imported axios
 const Login = props => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the Client route
@@ -15,7 +15,7 @@ const Login = props => {
 
   const login = event => {
     event.preventDefault();
-    axiosWithAuth()
+    axios // Michael: changed axios with auth to axios
       .post(`https://anywhere-fitness-api.herokuapp.com/api/auth/login`, user)
       .then(res => {
         localStorage.setItem("token", res.data.token);

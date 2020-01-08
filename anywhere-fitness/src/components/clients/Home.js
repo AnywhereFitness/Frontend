@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select'
+import axiosWithAuth from './API/axiosWithAuth'
 import axios from 'axios';
 import ClassCards from './ClassCards'
 const classTypes = [
@@ -42,11 +43,14 @@ const ClassLevel = [
 function Home() {
   const [Classes, setClasses] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [firstName, setFirstName] = useState("")
 useEffect(() => {
-  axios.get('https://anywhere-fitness-api.herokuapp.com/api/client/profile')
+  axiosWithAuth()
+  .get('/api/client/profile')
     .then(response => {
       console.log("User Information", response); 
+      console.log("User name", response.data.firstName)
+      setFirstName(response.data.firstName)
     })
     .catch(error => {
       console.log("Unable to retrieve data", error);
@@ -55,10 +59,11 @@ useEffect(() => {
 }, []);
 
   useEffect(() => {
-    axios.get('https://anywhere-fitness-api.herokuapp.com/api/classes')
+    axiosWithAuth()
+    .get('/api/classes')
       .then(response => {
         console.log("This is the class list", response)
-        const data = response.data.results
+        const data = response.data
         const result = data.filter(classes => 
           classes.name
           .toLowerCase()
@@ -95,7 +100,7 @@ useEffect(() => {
         </form>
         <ul>
             <li>About</li>
-            <li>Welcome, John!</li>
+    <li>Welcome, {firstName}!</li>
         </ul>
         </section>
         <div>
@@ -118,7 +123,7 @@ useEffect(() => {
           })}
           </div>
           <div>
-
+          
           </div>
         </div>
           </>
