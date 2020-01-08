@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../App.css';
+import InstructorClass from "./instructorClass";
 
 export function CreateClass(props) {
     const [cardInput, setCardInput] = useState({name: "", date: "",time: "", id: null});

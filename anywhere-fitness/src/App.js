@@ -8,6 +8,7 @@ import PrivateRoute from "./components/instructors/PrivateRoute";
 import { connect } from "react-redux";
 import { isLoggedIn, logout } from "./actions";
 import cookie from "react-cookies";
+import InstructorProfile from "./components/instructors/InstructorProfile";
 
 class App extends React.Component {
   componentDidMount() {
@@ -64,6 +65,12 @@ class App extends React.Component {
           exact
           path="/instructor/home"
           component={props => <Home {...props} />}
+        />
+
+          <Route
+          exact
+          path="/instructor/profile"
+          render={props => <InstructorProfile {...props} />}
         />
 
       </div>
