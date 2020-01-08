@@ -57,7 +57,7 @@ export class Register extends Component {
             />
             <button className="register-btn">
               {this.props.creatingUser ? (
-                <Loader type="TailSpin" color="#" height="26" width="26"
+                <Loader type="TailSpin" color="#FF9233" height="26" width="26"
                 />
               ) : (
                 "Register"
