@@ -25,11 +25,12 @@ export const login = credentials => dispatch => {
   return axiosWithAuth()
     .post("/login", credentials)
     .then(res => {
+        console.log(res.data)
       localStorage.setItem("token", res.data.token);
-      cookie.save("instructor", res.data.instructor);
+      cookie.save("user", res.data.user);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.instructor
+        payload: res.data.user
       });
       return true;
     })
@@ -41,15 +42,15 @@ export const login = credentials => dispatch => {
     });
 };
 
-export const isLoggedIn = instructor => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS, payload: instructor });
+export const isLoggedIn = user => dispatch => {
+  dispatch({ type: LOGIN_SUCCESS, payload: user });
 };
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT_SUCCESS });
   localStorage.removeItem("token");
-  cookie.remove("instructorId");
+  cookie.remove("user".id);
 };
 
 export const GETALLCLASSES_BYINSTRUCTOR_START =
@@ -58,13 +59,13 @@ export const GETALLCLASSES_BYINSTRUCTOR_SUCCESS =
   "GETALLCLASSES_BYINSTRUCTOR_SUCCESS";
 export const GETALLCLASSES_BYINSTRUCTOR_FAILURE =
   "GETALLCLASSES_BYINSTRUCTOR_FAILURE";
-export const getAllClassesByInstructor = instructorId => dispatch => {
+export const getAllClassesByInstructor = id => dispatch => {
   dispatch({ type: GETALLCLASSES_BYINSTRUCTOR_START });
   axiosWithAuth()
     .get(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/instructor/${instructorId}`
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/instructor/${id}`
     )
-    .then(res => {
+    .then(res => { console.log(res.data)
       dispatch({
         type: GETALLCLASSES_BYINSTRUCTOR_SUCCESS,
         payload: res.data
@@ -102,42 +103,45 @@ export const createClass = singleClass => dispatch => {
     });
 };
 
-export const GETCLASS_BYID_START = "GETCLASS_BYID_START";
-export const GETCLASS_BYID_SUCCESS = "GETCLASS_BYID_SUCCESS";
-export const GETCLASS_BYID_FAILURE = "GETCLASS_BYID_FAILURE";
-export const getClassByInstructor = classId => dispatch => {
-  dispatch({ type: GETCLASS_BYID_START });
+export const GET_INSTRUCTOR_CLASS_START = "GET_INSTRUCTOR_CLASS_START";
+export const GET_INSTRUCTOR_CLASS_SUCCESS =
+  "GET_INSTRUCTOR_CLASS_SUCCESS";
+export const GET_INSTRUCTOR_CLASS_FAILURE =
+  "GET_INSTRUCTOR_CLASS_FAILURE";
+export const getClass = singleClass_id => dispatch => {
+  dispatch({ type: GET_INSTRUCTOR_CLASS_START });
   axiosWithAuth()
     .get(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/${classId}`
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/${singleClass_id}`
     )
     .then(res => {
       dispatch({
-        type: GETCLASS_BYID_SUCCESS,
+        type: GET_INSTRUCTOR_CLASS_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
       dispatch({
-        type: GETCLASS_BYID_FAILURE,
-        payload: err.response.data
+        type: GET_INSTRUCTOR_CLASS_FAILURE,
+        payload: err.response.data.message
       });
     });
 };
+
 
 export const UPDATE_INSTRUCTOR_CLASS_START = "UPDATE_INSTRUCTOR_CLASS_START";
 export const UPDATE_INSTRUCTOR_CLASS_SUCCESS =
   "UPDATE_INSTRUCTOR_CLASS_SUCCESS";
 export const UPDATE_INSTRUCTOR_CLASS_FAILURE =
   "UPDATE_INSTRUCTOR_CLASS_FAILURE";
-export const updateClass = (classId, singleClass) => dispatch => {
+export const updateClass = (singleClass_id, singleClass) => dispatch => {
   dispatch({ type: UPDATE_INSTRUCTOR_CLASS_START });
   axiosWithAuth()
     .put(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/${classId}`,
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/${singleClass_id}`,
       singleClass
     )
-    .then(res => {
+    .then(res => {console.log(res.data)
       dispatch({
         type: UPDATE_INSTRUCTOR_CLASS_SUCCESS,
         payload: res.data
@@ -155,11 +159,11 @@ export const DELETE_INSTRUCTOR_CLASS_START = "DELETE_INSTRUCTOR_CLASS_START";
 export const DELETE_INSTRUCTOR_CLASS_SUCESS = "DELETE_INSTRUCTOR_CLASS_SUCESS";
 export const DELETE_INSTRUCTOR_CLASS_FAILURE =
   "DELETE_INSTRUCTOR_CLASS_FAILURE";
-export const deleteClass = (classId, singleClass) => dispatch => {
+export const deleteClass = (_id, singleClass) => dispatch => {
   dispatch({ type: DELETE_INSTRUCTOR_CLASS_START });
   axiosWithAuth()
     .delete(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/${classId}`,
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/${_id}`,
       singleClass
     )
     .then(res => console.log(res))

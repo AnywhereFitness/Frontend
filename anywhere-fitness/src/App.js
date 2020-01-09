@@ -4,15 +4,18 @@ import { Route } from "react-router-dom";
 import Home from "./components/instructors/Home";
 import Login from "./components/instructors/Login";
 import Register from "./components/instructors/Register";
+import UpdateClassForm from "./components/instructors/UpdateInstructorClass";
 import PrivateRoute from "./components/instructors/PrivateRoute";
 import { connect } from "react-redux";
 import { isLoggedIn, logout } from "./actions";
 import cookie from "react-cookies";
+import AddInstructorClass from "./components/instructors/AddInstructorClass";
+import "./scss/app.scss"
 
 class App extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.isLoggedIn(cookie.load("instructor"));
+      this.props.isLoggedIn(cookie.load("user"));
     }
   }
 
@@ -44,16 +47,17 @@ class App extends React.Component {
           path="/logout"
           component={() => {
             window.location.href =
-              "http://localhost:3004/instructor";
+              "http://localhost:3000/";
             return null;
           }}
         />
 
         <Route
           exact
-          path="/instructor"
+          path="/"
           render={props => <Login {...props} />}
         />
+
 
         <Route
           path="/instructor/register"
@@ -64,6 +68,16 @@ class App extends React.Component {
           exact
           path="/instructor/home"
           component={props => <Home {...props} />}
+        />
+
+        <Route
+          path="/instructor/add-class"
+          render={props => <AddInstructorClass {...props} />}
+        />
+
+        <Route
+          path="/instructor/update-class-form/:id"
+          render={props => <UpdateClassForm {...props} />}
         />
 
       </div>
