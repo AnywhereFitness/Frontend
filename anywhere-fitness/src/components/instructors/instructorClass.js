@@ -31,12 +31,12 @@ const InstructorClass = props => {
       </div>
 
       <Link
-        to={`/instructor/update-class-form/${props.instructorClass.classId}`}
+        to={`/instructor/update-class-form/${props.instructorClass._id}`}
       >
         <button className="view-details-btn">View Details</button>
       </Link>
       <Link
-        to={`/instructor/update-class-form/${props.instructorClass.classId}`}
+        to={`/instructor/update-class-form/${props.instructorClass._id}`}
       >
         <button className="view-details-btn">Pay Now</button>
       </Link>

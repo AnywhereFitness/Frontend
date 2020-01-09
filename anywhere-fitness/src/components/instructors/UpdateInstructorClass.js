@@ -5,27 +5,28 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Link } from "react-router-dom";
 
 export class UpdateClassForm extends Component {
-  state = {
-    singleClass: {
-      name: "",
-      intensity: "",
-      date: "",
-      time: "",
-      address: "",
-      city: "",
-      zipcode: "",
-      description: ""
-    }
-  };
+    state = {
+        singleClass: {
+        type: "",
+        intensityLevel: "",
+        days: "",
+        name: "",
+        duration: "",
+        startTime: "",
+        endTime: "",
+        location: "",
+        description: "",
+        price: "",
+        size: "",
+      }
+    };
 
   componentDidMount() {
     axiosWithAuth()
       .get(
-        `https://anywhere-fitness-azra-be.herokuapp.com/api/classes/${
-          this.props.match.params.id
-        }`
+        `https://anywhere-fitness-api.herokuapp.com/api/classes/${this.props.match.params.id}`
       )
-      .then(res => {
+      .then(res => { console.log(res.data)
         this.setState({ singleClass: res.data });
       });
   }
@@ -103,24 +104,6 @@ export class UpdateClassForm extends Component {
             />
           </div>
           <div className="form-group">
-            date:
-            <input
-              required
-              type="text"
-              onChange={this.changeHandler}
-              placeholder="Date"
-              name="date"
-              value={this.state.singleClass.date}
-            />
-            time:
-            <input
-              required
-              type="text"
-              onChange={this.changeHandler}
-              placeholder="Time"
-              name="time"
-              value={this.state.singleClass.time}
-            />
             Duration:
             <input
               required
@@ -179,7 +162,7 @@ export class UpdateClassForm extends Component {
             />
           </div>
           <div className="form-group">
-            description:
+            Description:
             <input
               required
               type="text"
@@ -190,15 +173,20 @@ export class UpdateClassForm extends Component {
             />
           </div>
             <div className="update-form-buttons">
-              <button className="update-btn">Update</button>
+              <button className="update-btn" 
+                onClick={() => {
+                alert('Congrats! You have successfully updated this class.')
+                 }}   
+              >Update</button>
               <button
                 className="delete-btn"
                 onClick={e => {
                   e.preventDefault();
                   this.props.deleteClass(
-                    this.state.singleClass.id,
+                    this.state.singleClass._id,
                     this.state.singleClass
                   );
+                  alert('Congrats! You have successfully deleted this class.')
                   this.props.history.push("/instructor/home");
                 }}
               >

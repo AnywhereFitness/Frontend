@@ -5,14 +5,12 @@ import cookie from "react-cookies";
 import { Link } from "react-router-dom";
 
 export class AddInstructorClass extends Component {
-  state = {
-    singleClass: {
+      state = {
+      singleClass: {
       type: "",
       intensityLevel: "",
       days: "",
       name: "",
-      date: "",
-      time: "",
       duration: "",
       startTime: "",
       endTime: "",
@@ -20,7 +18,7 @@ export class AddInstructorClass extends Component {
       description: "",
       price: "",
       size: "",
-      instructor: cookie.load("instructor")[0]["id"]
+      instructor: cookie.load("user").id
     }
   };
 
@@ -116,30 +114,12 @@ export class AddInstructorClass extends Component {
             />
           </div>
           <div className="form-group">
-            date:
-            <input
-              required
-              type="text"
-              onChange={this.changeHandler}
-              placeholder="Date"
-              name="date"
-              value={this.state.singleClass.date}
-            />
-            time:
-            <input
-              required
-              type="text"
-              onChange={this.changeHandler}
-              placeholder="Time"
-              name="time"
-              value={this.state.singleClass.time}
-            />
             Duration:
             <input
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="e.g. 1 hour 30 minutes"
+              placeholder="e.g. 1 (for 1 hour)"
               name="duration"
               value={this.state.singleClass.duration}
             />
@@ -202,7 +182,11 @@ export class AddInstructorClass extends Component {
               value={this.state.singleClass.description}
             />
           </div>
-          <button className="add-class-btn">Add Class</button>
+          <button className="add-class-btn"       
+            onClick={() => {
+            alert('Congrats! You have successfully added a new class.')
+             }}
+            >Add Class</button>
         </form>
       </div>
     );
