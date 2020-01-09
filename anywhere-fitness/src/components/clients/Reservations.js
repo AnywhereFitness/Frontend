@@ -14,7 +14,7 @@ export default function Reservations(){
                 axiosWithAuth()
                 .get(`/api/classes/${item.classId}`)
                 .then(res =>
-                   setReservation(res.data)
+                  setReservation(res.data)
                     )
                 
             })
@@ -24,14 +24,13 @@ export default function Reservations(){
             console.log("Data could not be retrieved", error);
           });
           
-      }, [Reservation]);
+      }, []);
 
           
 
 
     return (
         <>
-
         <h1>Reservations</h1>
         <h2>{Reservation.type}</h2>
         <h3>{Reservation.name}</h3>

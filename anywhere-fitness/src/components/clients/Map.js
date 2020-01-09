@@ -12,7 +12,7 @@ export default function Map({ options, onMount, className }) {
       const script = document.createElement(`script`)
       script.src =
         `https://maps.googleapis.com/maps/api/js?key=` +
-        process.env.GOOGLE_MAPS_API_KEY
+        `AIzaSyBRIfcS__U4fn1cgrtvZ8yVPFMgEE5pKJc`
       document.head.append(script)
       script.addEventListener(`load`, onLoad)
       return () => script.removeEventListener(`load`, onLoad)
@@ -21,7 +21,7 @@ export default function Map({ options, onMount, className }) {
 
   return (
     <div
-      style={{ height: `60vh`, margin: `1em 0`, borderRadius: `0.5em` }}
+      style={{ height: `60vh`, width: `50%`, alignContent: `center`, borderRadius: `15px` }}
       {...{ ref, className }}
     />
   )
@@ -29,7 +29,7 @@ export default function Map({ options, onMount, className }) {
 
 Map.defaultProps = {
   options: {
-    center: { lat: 48, lng: 8 },
-    zoom: 5,
+    center: { lat: 40.7128, lng: -74.0060  },
+    zoom: 11,
   },
 }

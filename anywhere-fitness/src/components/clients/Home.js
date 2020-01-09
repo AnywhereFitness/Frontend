@@ -4,6 +4,8 @@ import axiosWithAuth from "./API/axiosWithAuth";
 import ClassCards from "./ClassCards";
 import styled from "styled-components";
 import Reservations from "./Reservations";
+import Map from "./Map"
+
 
 const classTypes = [
   { label: "Yoga", value: 1 },
@@ -132,6 +134,9 @@ function Home() {
               />
             );
           })}
+        </div>
+        <div>
+          <Map />
         </div>
         <Reservations/>
       </div>
