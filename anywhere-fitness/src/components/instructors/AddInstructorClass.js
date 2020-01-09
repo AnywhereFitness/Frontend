@@ -68,9 +68,10 @@ export class AddInstructorClass extends Component {
           <Link to="/instructor/home">
             <button className="back-btn">{`<--`} Back to Home</button>
           </Link>
-          <div className="form-label">Add New Class</div>
+          <button className="skip-btn">Skip</button>
+          <div className="form-label"> Create Class</div>
           <div className="form-group">
-            Type:
+            Class Type:
             <input
               className="add-class-name-input"
               required
@@ -80,7 +81,7 @@ export class AddInstructorClass extends Component {
               name="type"
               value={this.state.singleClass.type}
             />
-            Intensity Level:
+            Class Level:
             <input
               className="add-class-name-input"
               required
@@ -114,12 +115,12 @@ export class AddInstructorClass extends Component {
             />
           </div>
           <div className="form-group">
-            Duration:
+            Class Lenght (in minutes):
             <input
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="e.g. 1 (for 1 hour)"
+              placeholder="e.g. 60 (for 60 minutes)"
               name="duration"
               value={this.state.singleClass.duration}
             />
@@ -153,7 +154,7 @@ export class AddInstructorClass extends Component {
               name="location"
               value={this.state.singleClass.location}
             />
-            Price:
+             Class Cost:
             <input
               type="number"
               onChange={this.changeHandler}
@@ -161,7 +162,7 @@ export class AddInstructorClass extends Component {
               name="price"
               value={this.state.singleClass.price}
             />
-            Class size:
+            Class Size:
             <input
               required
               type="number"
@@ -172,7 +173,7 @@ export class AddInstructorClass extends Component {
             />
           </div>
           <div className="form-group">
-            description:
+             Class Description:
             <input
               required
               type="text"

@@ -392,7 +392,7 @@
         .form-label {
           font-size: 2.5rem;
           text-align: center;
-          background-color: #8685a5;
+          background-color: #FF9233;
           color: #ffffff;
           font-weight: bold;
         }
@@ -407,7 +407,7 @@
           padding: 10px;
           margin: 10px auto;
           border-radius: 25px;
-          color: #ff4a4a;
+          color: #FF9233;
           cursor: pointer;
           font-weight: bold;
           font-size: 1rem;
@@ -422,7 +422,7 @@
           .update-btn {
             margin: 5px auto;
             color: #fff;
-            background-color: #b3aba6;
+            background-color:#ff8c42;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
@@ -459,7 +459,7 @@
         }
       }
     }
-  
+  //AH//
     .add-class-form {
       margin: auto 150px;
       display: flex;
@@ -499,15 +499,30 @@
             margin: auto 5px;
           }
         }
-  
+  //AH//
         .form-label {
           font-size: 2rem;
           text-align: center;
-          background-color: #787d80;
+          background-color:#ff8c42;
           color: #ffffff;
           font-weight: bold;
           border-radius: 5px;
         }
+        .skip-btn{
+          color: #ff8c42;
+          background-color: #ffffff;
+          font-family: Raleway;
+          font-size: 1rem;
+          padding: 10px;
+          margin: 10px auto;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: bold;
+          border-color: white;
+          margin-left: 70%;
+          
+        }
+        //AH//
   
         .back-btn {
           background-color: #ffffff;
@@ -515,7 +530,7 @@
           padding: 10px;
           margin: 10px auto;
           border-radius: 25px;
-          color: #ff4a4a;
+          color:#ff8c42;
           cursor: pointer;
           font-weight: bold;
           font-size: 1rem;
@@ -524,11 +539,11 @@
           background-color: teal;
           color: #ffffff;
         }
-  
+  //AH//
         .add-class-btn {
           margin: 5px auto;
           color: #ffffff;
-          background-color: #97939e;
+          background-color:#ff8c42;
           border: none;
           border-radius: 5px;
           font-size: 1.3rem;
