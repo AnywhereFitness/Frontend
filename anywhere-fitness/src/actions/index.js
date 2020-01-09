@@ -50,7 +50,7 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT_SUCCESS });
   localStorage.removeItem("token");
-  cookie.remove("instructorId");
+  cookie.remove("id");
 };
 
 export const GETALLCLASSES_BYINSTRUCTOR_START =

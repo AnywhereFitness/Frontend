@@ -14,7 +14,7 @@ import "./scss/app.scss"
 class App extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("token")) {
-      this.props.isLoggedIn(cookie.load("instructor"));
+      this.props.isLoggedIn(cookie.load("user"));
     }
   }
 
