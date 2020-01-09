@@ -207,9 +207,6 @@ export class UpdateClassForm extends Component {
           </div>
             <div className="update-form-buttons">
               <button className="update-btn" 
-                onClick={() => {
-                alert('Congrats! You have successfully updated this class.')
-                 }}   
               >Update</button>
               <button
                 className="delete-btn"
@@ -219,7 +216,6 @@ export class UpdateClassForm extends Component {
                     this.props.singleClass._id,
                     this.props.singleClass
                   );
-                  alert('Congrats! You have successfully deleted this class.')
                   this.props.history.push("/instructor/home");
                 }}
               >
