@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+*{
+  font-family: raleway;
+}
+
 .App {
   text-align: center;
 }
@@ -28,11 +34,27 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-bar{
+  border-radius: 1.625rem;
+  outline: none;
+  border: none;
+  padding: .2rem 3.5rem .2rem 1.5rem;
+  font-size: 1.8rem;
+  background: #f5f5f5f5;
+  color: #FF9233;
+  margin-top: 2%;
 }
+
+.header{
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #BDBDBD
+}
+
+.select-bar{
+  max-width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+

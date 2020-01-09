@@ -3,6 +3,7 @@ import Select from 'react-select'
 import axiosWithAuth from './API/axiosWithAuth'
 import axios from 'axios';
 import ClassCards from './ClassCards'
+import styled from 'styled-components'
 const classTypes = [
  { label: "Yoga", value: 1 },
  {label: "Weightlifting", value: 2},
@@ -40,6 +41,17 @@ const ClassLevel = [
  {label: "Intermediate", value: 2},
  {label: "Advanced", value: 3},
 ]
+
+const Listed = styled.ul`
+list-style: none;
+display: flex;
+`
+const ListedI = styled.li`
+margin: 0 4%;
+font-weight: bold;
+font-size: 2rem;
+`
+
 function Home() {
   const [Classes, setClasses] = useState([]);
   const [search, setSearch] = useState("");
@@ -84,7 +96,7 @@ useEffect(() => {
 
     return (
         <>
-        <section>
+        <section className="header">
         <h1>Anywhere Fitness</h1>   
         <form>
         <input
@@ -98,16 +110,16 @@ useEffect(() => {
            autoComplete="on"
         />
         </form>
-        <ul>
-            <li>About</li>
-    <li>Welcome, {firstName}!</li>
-        </ul>
+        <Listed>
+            <listedI>About</listedI>
+            <listedI>Welcome, {firstName}!</listedI>
+        </Listed>
         </section>
-        <div>
-          <Select options={classTypes} isMulti/>
-          <Select options={ClassDuration} isMulti/>
-          <Select options={ClassTime} isMulti/>
-          <Select options={ClassLevel} isMulti/>
+        <div className="select-bar">
+          <Select  options={classTypes} isMulti/>
+          <Select  options={ClassDuration} isMulti/>
+          <Select  options={ClassTime} isMulti/>
+          <Select  options={ClassLevel} isMulti/>
         </div>
         <div>
           <div>
