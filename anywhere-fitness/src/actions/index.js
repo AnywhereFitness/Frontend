@@ -103,39 +103,42 @@ export const createClass = singleClass => dispatch => {
     });
 };
 
-export const GETCLASS_BYID_START = "GETCLASS_BYID_START";
-export const GETCLASS_BYID_SUCCESS = "GETCLASS_BYID_SUCCESS";
-export const GETCLASS_BYID_FAILURE = "GETCLASS_BYID_FAILURE";
-export const getClassByInstructor = id => dispatch => {
-  dispatch({ type: GETCLASS_BYID_START });
+export const GET_INSTRUCTOR_CLASS_START = "GET_INSTRUCTOR_CLASS_START";
+export const GET_INSTRUCTOR_CLASS_SUCCESS =
+  "GET_INSTRUCTOR_CLASS_SUCCESS";
+export const GET_INSTRUCTOR_CLASS_FAILURE =
+  "GET_INSTRUCTOR_CLASS_FAILURE";
+export const getClass = singleClass_id => dispatch => {
+  dispatch({ type: GET_INSTRUCTOR_CLASS_START });
   axiosWithAuth()
     .get(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/${id}`
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/${singleClass_id}`
     )
-    .then(res => { console.log(res.data)
+    .then(res => {
       dispatch({
-        type: GETCLASS_BYID_SUCCESS,
+        type: GET_INSTRUCTOR_CLASS_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
       dispatch({
-        type: GETCLASS_BYID_FAILURE,
-        payload: err.response.data
+        type: GET_INSTRUCTOR_CLASS_FAILURE,
+        payload: err.response.data.message
       });
     });
 };
+
 
 export const UPDATE_INSTRUCTOR_CLASS_START = "UPDATE_INSTRUCTOR_CLASS_START";
 export const UPDATE_INSTRUCTOR_CLASS_SUCCESS =
   "UPDATE_INSTRUCTOR_CLASS_SUCCESS";
 export const UPDATE_INSTRUCTOR_CLASS_FAILURE =
   "UPDATE_INSTRUCTOR_CLASS_FAILURE";
-export const updateClass = (_id, singleClass) => dispatch => {
+export const updateClass = (singleClass_id, singleClass) => dispatch => {
   dispatch({ type: UPDATE_INSTRUCTOR_CLASS_START });
   axiosWithAuth()
     .put(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/${_id}`,
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/${singleClass_id}`,
       singleClass
     )
     .then(res => {console.log(res.data)

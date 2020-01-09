@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getAllClassesByInstructor, getClassByInstructor } from "../../actions";
+import { getAllClassesByInstructor } from "../../actions";
 import cookie from "react-cookies";
 import InstructorClass from "./instructorClass";
 import { Link } from "react-router-dom";
@@ -50,6 +50,6 @@ export default connect(
   mapStateToProps,
   {
     getAllClassesByInstructor,
-    getClassByInstructor
+    
   }
 )(Home);

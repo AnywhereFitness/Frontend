@@ -1,35 +1,63 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateClass, deleteClass, getClassByInstructor } from "../../actions";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { updateClass, deleteClass, getClass } from "../../actions";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Link } from "react-router-dom";
 
 export class UpdateClassForm extends Component {
     state = {
         singleClass: {
-        type: "",
-        intensityLevel: "",
-        days: "",
-        name: "",
-        duration: "",
-        startTime: "",
-        endTime: "",
-        location: "",
-        description: "",
-        price: "",
-        size: "",
+          id: this.props.match.params.id,
+          type: this.props.singleClass,
+          intensityLevel: "",
+          days: "",
+          name: "",
+          duration: "",
+          startTime: "",
+          endTime: "",
+          location: "",
+          description: "",
+          price: "",
+          size: "",
       }
     };
 
-  componentDidMount() {
-    axiosWithAuth()
-      .get(
-        `https://anywhere-fitness-api.herokuapp.com/api/classes/${this.props.match.params.id}`
-      )
-      .then(res => { console.log(res.data)
-        this.setState({ singleClass: res.data });
-      });
-  }
+    componentDidMount() {
+      this.props.getClass(this.props.match.params.id)
+      console.log("PROPS FOR DAYZZZZZ", this.props.singleClass)
+    }
+
+  // componentDidUpdate(prevProps) {
+    // axiosWithAuth()
+    //   .get(
+    //     `https://anywhere-fitness-api.herokuapp.com/api/classes/${this.props.match.params.id}`
+    //   )
+    //   .then(res => { console.log(res.data)
+    //     this.setState({ singleClass: res.data });
+    //   });
+    // console.log("PREVIOUS PROPS", prevProps.singleClass)
+    // console.log("CURRENT PROPS", this.props.singleClass)
+    // if (this.props.singleClass !== prevProps.singleClass) {
+      
+    //   this.setState((state, props) => ({ 
+    //     singleClass: {
+    //       type: props.singleClass.type,
+    //       intensityLevel: props.singleClass.intensityLevel,
+    //       days: props.singleClass.days,
+    //       name: props.singleClass.name,
+    //       duration: props.singleClass.duration,
+    //       startTime: props.singleClass.startTime,
+    //       endTime: props.singleClass.endTime,
+    //       location: props.singleClass.location,
+    //       description: props.singleClass.description,
+    //       price: props.singleClass.price,
+    //       size: props.singleClass.size,
+    //     }
+    // }))
+    // }
+  // }
+
+  
 
   changeHandler = e => {
     e.persist();
@@ -42,14 +70,19 @@ export class UpdateClassForm extends Component {
   };
 
   render() {
-    return (
+    {console.log("SINGLE CLASS OBJECT FROM STATE:", this.props.singleClass)}
+   
+    if (this.props.gettingClasses) {
+      return (<h1>Loading...</h1>) 
+    } else { 
+      return (
       <div className="update-class">
         <div className="update-class-form">
           <form
             onSubmit={e => {
               e.preventDefault();
               this.props.updateClass(
-                this.state.singleClass.id,
+                this.props.match.params.id,
                 this.state.singleClass
               );
               this.props.history.push("/instructor/home");
@@ -66,7 +99,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Class Type"
+              placeholder={`${this.props.singleClass.type}`}
               name="type"
               value={this.state.singleClass.type}
             />
@@ -76,7 +109,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="intensity level"
+              placeholder={`${this.props.singleClass.intensityLevel}`}
               name="intensityLevel"
               value={this.state.singleClass.intensityLevel}
             />
@@ -86,7 +119,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Days"
+              placeholder={`${this.props.singleClass.days}`}
               name="days"
               value={this.state.singleClass.days}
             />
@@ -98,7 +131,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Class Name"
+              placeholder={`${this.props.singleClass.name}`}
               name="name"
               value={this.state.singleClass.name}
             />
@@ -109,7 +142,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Duration"
+              placeholder={`${this.props.singleClass.duration}`}
               name="duration"
               value={this.state.singleClass.duration}
             />
@@ -118,7 +151,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Start Time"
+              placeholder={`${this.props.singleClass.startTime}`}
               name="startTime"
               value={this.state.singleClass.startTime}
             />
@@ -127,7 +160,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="End Time"
+              placeholder={`${this.props.singleClass.endTime}`}
               name="endTime"
               value={this.state.singleClass.endTime}
             />
@@ -139,7 +172,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Location"
+              placeholder={`${this.props.singleClass.location}`}
               name="location"
               value={this.state.singleClass.location}
             />
@@ -147,7 +180,7 @@ export class UpdateClassForm extends Component {
             <input
               type="number"
               onChange={this.changeHandler}
-              placeholder="price"
+              placeholder={`${this.props.singleClass.price}`}
               name="price"
               value={this.state.singleClass.price}
             />
@@ -156,7 +189,7 @@ export class UpdateClassForm extends Component {
               required
               type="number"
               onChange={this.changeHandler}
-              placeholder="size"
+              placeholder={`${this.props.singleClass.size}`}
               name="size"
               value={this.state.singleClass.size}
             />
@@ -167,7 +200,7 @@ export class UpdateClassForm extends Component {
               required
               type="text"
               onChange={this.changeHandler}
-              placeholder="Description"
+              placeholder={`${this.props.singleClass.description}`}
               name="description"
               value={this.state.singleClass.description}
             />
@@ -183,8 +216,8 @@ export class UpdateClassForm extends Component {
                 onClick={e => {
                   e.preventDefault();
                   this.props.deleteClass(
-                    this.state.singleClass._id,
-                    this.state.singleClass
+                    this.props.singleClass._id,
+                    this.props.singleClass
                   );
                   alert('Congrats! You have successfully deleted this class.')
                   this.props.history.push("/instructor/home");
@@ -196,13 +229,15 @@ export class UpdateClassForm extends Component {
           </form>
         </div>
       </div>
-    );
+    )};
   }
 }
 
 const mapStateToProps = state => {
   return {
-    singleClass: state.homeReducer.singleClass
+    singleClass: state.homeReducer.singleClass,
+    instructorClasses: state.homeReducer.instructorClasses,
+    gettingClasses: state.homeReducer.gettingClasses
   };
 };
 
@@ -211,6 +246,6 @@ export default connect(
   {
     updateClass,
     deleteClass,
-    getClassByInstructor
+    getClass
   }
 )(UpdateClassForm);

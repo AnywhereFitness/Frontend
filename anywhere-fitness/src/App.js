@@ -46,14 +46,14 @@ class App extends React.Component {
           path="/logout"
           component={() => {
             window.location.href =
-              "http://localhost:3000/instructor/";
+              "http://localhost:3000/";
             return null;
           }}
         />
 
         <Route
           exact
-          path="/instructor"
+          path="/"
           render={props => <Login {...props} />}
         />
 
@@ -75,7 +75,7 @@ class App extends React.Component {
         />
 
         <Route
-          path="/instructor/update-class-form/id"
+          path="/instructor/update-class-form/:id"
           render={props => <UpdateClassForm {...props} />}
         />
 
