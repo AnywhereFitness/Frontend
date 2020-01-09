@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select'
 import axiosWithAuth from './API/axiosWithAuth'
-import axios from 'axios';
 import ClassCards from './ClassCards'
 import styled from 'styled-components'
 const classTypes = [
@@ -45,12 +44,14 @@ const ClassLevel = [
 const Listed = styled.ul`
 list-style: none;
 display: flex;
+justify-content: space-evenly;
 `
 const ListedI = styled.li`
 margin: 0 4%;
 font-weight: bold;
-font-size: 2rem;
+font-size: 1rem;
 `
+
 
 function Home() {
   const [Classes, setClasses] = useState([]);
@@ -111,8 +112,8 @@ useEffect(() => {
         />
         </form>
         <Listed>
-            <listedI>About</listedI>
-            <listedI>Welcome, {firstName}!</listedI>
+            <ListedI>About</ListedI>
+            <ListedI>Welcome, {firstName}!</ListedI>
         </Listed>
         </section>
         <div className="select-bar">
@@ -121,8 +122,8 @@ useEffect(() => {
           <Select  options={ClassTime} isMulti/>
           <Select  options={ClassLevel} isMulti/>
         </div>
-        <div>
-          <div>
+        <div className="container">
+          <div className="class-list">
           {Classes.map((classes, index) => {
             return (
               <ClassCards key={index}
@@ -135,7 +136,7 @@ useEffect(() => {
           })}
           </div>
           <div>
-          
+         
           </div>
         </div>
           </>

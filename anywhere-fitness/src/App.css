@@ -57,4 +57,12 @@
   justify-content: space-around;
 }
 
+.container{
+  width: 100%;
+}
+
+.class-list{
+  width: 50%;
+}
+
 
