@@ -25,11 +25,12 @@ export const login = credentials => dispatch => {
   return axiosWithAuth()
     .post("/login", credentials)
     .then(res => {
+        console.log(res.data)
       localStorage.setItem("token", res.data.token);
-      cookie.save("instructor", res.data.instructor);
+      cookie.save("user", res.data.user);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.instructor
+        payload: res.data.user
       });
       return true;
     })
@@ -41,8 +42,8 @@ export const login = credentials => dispatch => {
     });
 };
 
-export const isLoggedIn = instructor => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS, payload: instructor });
+export const isLoggedIn = user => dispatch => {
+  dispatch({ type: LOGIN_SUCCESS, payload: user });
 };
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
@@ -58,13 +59,13 @@ export const GETALLCLASSES_BYINSTRUCTOR_SUCCESS =
   "GETALLCLASSES_BYINSTRUCTOR_SUCCESS";
 export const GETALLCLASSES_BYINSTRUCTOR_FAILURE =
   "GETALLCLASSES_BYINSTRUCTOR_FAILURE";
-export const getAllClassesByInstructor = instructorId => dispatch => {
+export const getAllClassesByInstructor = id => dispatch => {
   dispatch({ type: GETALLCLASSES_BYINSTRUCTOR_START });
   axiosWithAuth()
     .get(
-      `https://anywhere-fitness-api.herokuapp.com/api/classes/instructor/${instructorId}`
+      `https://anywhere-fitness-api.herokuapp.com/api/classes/instructor/${id}`
     )
-    .then(res => {
+    .then(res => { console.log(res.data)
       dispatch({
         type: GETALLCLASSES_BYINSTRUCTOR_SUCCESS,
         payload: res.data
@@ -111,7 +112,7 @@ export const getClassByInstructor = classId => dispatch => {
     .get(
       `https://anywhere-fitness-api.herokuapp.com/api/classes/${classId}`
     )
-    .then(res => {
+    .then(res => { console.log(res.data)
       dispatch({
         type: GETCLASS_BYID_SUCCESS,
         payload: res.data

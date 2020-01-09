@@ -9,7 +9,7 @@ const initialState = {
     error: "",
     loggingIn: false,
     loggedIn: false,
-    instructor: ""
+    user: ""
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -26,7 +26,7 @@ export const loginReducer = (state = initialState, action) => {
                 error: "",
                 loggingIn: false,
                 loggedIn: true,
-                instructor: action.payload
+                user: action.payload
             }
         case LOGIN_FAILURE:
             return {

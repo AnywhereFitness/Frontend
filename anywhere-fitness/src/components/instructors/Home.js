@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export class Home extends Component {
   componentDidMount() {
-    this.props.getAllClassesByInstructor(cookie.load("instructor")[0]["id"]);
+    this.props.getAllClassesByInstructor(cookie.load("instructor")[0]["_id"]);
   }
 
   render() {
@@ -15,9 +15,9 @@ export class Home extends Component {
       <div className="home">
         <div className="instructor-controls">
           <div className="home-top">
-            <h1 className="home-header">Upcoming Classes</h1>
+            <h1 className="home-header">List of My Classes</h1>
             <Link to="/instructor/add-class">
-              <button className="add-class-btn">Add New Class</button>
+              <button className="add-class-btn">Add Class</button>
             </Link>
           </div>
           <div className="instructor-classes">
