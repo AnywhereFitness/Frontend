@@ -36,16 +36,18 @@ export default function Reservations(){
     return (
         <>
         <h1>Your Reservations</h1>
+        <div className="reservations">
         {Reservation.map((workout, index) =>{
             console.log("mapped workout", workout)
            return(
-            <div>
+            <div className="reservation">
             <h2>{workout.data.type}</h2>
             <h3>{workout.data.name}</h3>
             <p>{workout.data.startTime}</p>
             </div>
            );
         })}
+        </div>
         </>
     )
 }

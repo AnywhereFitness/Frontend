@@ -21,7 +21,7 @@ export default function Map({ options, onMount, className }) {
 
   return (
     <div
-      style={{ height: `60vh`, width: `50%`, alignContent: `center`, borderRadius: `15px` }}
+      style={{ left: `800px`, down: `1200px`, height: `60vh`, width: `58%`, alignContent: `center`, borderRadius: `15px` }}
       {...{ ref, className }}
     />
   )

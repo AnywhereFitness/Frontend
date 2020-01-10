@@ -4,7 +4,7 @@ import axiosWithAuth from "./API/axiosWithAuth";
 
 export default function ClassCards(props) {
   const Clas = styled.div`
-    width: 450px;
+    width: 750px;
     height: 250px;
     background-color: #bdbdbd;
     background: linear-gradient(#ff9233, #ffaa99);

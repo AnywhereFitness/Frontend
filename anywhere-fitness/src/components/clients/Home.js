@@ -142,8 +142,8 @@ function Home() {
         <div>
           <Map />
         </div>
+        </div>
         <Reservations/>
-      </div>
     </>
   );
 }
