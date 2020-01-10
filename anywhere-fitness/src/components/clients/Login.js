@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "./API/axiosWithAuth";
 import axios from 'axios' //Michael: imported axios
+import mountainyoga from "./img/mountainyoga.jpg"
 const Login = props => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the Client route
@@ -27,25 +28,34 @@ const Login = props => {
   console.log(user)
   return (
     <>
-      <h1>Welcome Client (something to that effect)</h1>
+      <div className="signup-band">
+        <span>Anywhere Fitness</span>
+      </div>
+      <div className="signup-container">
+        <div className="image-half">
+        <img src={mountainyoga} alt="Woman doing Yoga on a beach at sunset"></img>
+        </div>
+      <div className="form-half">
       <form className="login" onSubmit={login}>
         <h2>Login Here</h2>
-        <label>Email</label>
         <input
           type="email"
           name="email"
           value={user.email}
           onChange={handleChange}
+          placeholder="email"
         />
-        <label>Password</label>
         <input
           type="password"
           name="password"
           value={user.password}
           onChange={handleChange}
+          placeholder="password"
         />
         <button>Log in</button>
       </form>
+      </div>
+      </div>
     </>
   );
 };

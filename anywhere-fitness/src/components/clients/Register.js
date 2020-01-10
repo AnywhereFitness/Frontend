@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../clients/API/axiosWithAuth";
-
+import mountainyoga from "./img/mountainyoga.jpg";
 const UserForm = () => {
   const [user, setUser] = useState({
     firstName: "",
@@ -41,7 +41,7 @@ const UserForm = () => {
     </div>
     <div className="signup-container">
       <div className="image-half">
-          <img src="" alt="Woman doing Yoga on a beach at sunset"></img>
+          <img src={mountainyoga} alt="Woman doing Yoga on a beach at sunset"></img>
       </div>
       
     <div className="form-half">

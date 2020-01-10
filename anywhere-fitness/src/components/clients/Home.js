@@ -4,6 +4,7 @@ import axiosWithAuth from "./API/axiosWithAuth";
 import ClassCards from "./ClassCards";
 import styled from "styled-components";
 import Reservations from "./Reservations";
+import {Link} from "react-router-dom"
 import Map from "./Map"
 
 const styles = {
@@ -117,7 +118,7 @@ function Home() {
         <Listed>
           <ListedI>About</ListedI>
           <ListedI>Welcome, {firstName}!</ListedI>
-          <ListedI>Log Out</ListedI>
+          <ListedI><Link to={`/`}>Log Out</Link></ListedI>
 
         </Listed>
       </section>
@@ -141,9 +142,7 @@ function Home() {
             );
           })}
         </div>
-        <div>
           <Map />
-        </div>
         </div>
         <Reservations/>
     </>

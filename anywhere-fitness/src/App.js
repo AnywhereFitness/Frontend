@@ -10,14 +10,20 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path="/" component={Login} />
-        <span className="register">
+        <Route exact path="/">
+          <Login/>
+          </Route> 
+        <Route path="/register">
         <Register />
-        </span>
-        <PrivateRoute exact path="/clienthome" component={Home} />
+        </Route>
+        <PrivateRoute exact path="/clienthome">
+          <Home/>
+        </PrivateRoute>
       </div>
     </Router>
   );
 }
+
+
 
 export default App;
