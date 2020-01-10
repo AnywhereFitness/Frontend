@@ -64,7 +64,8 @@
 }
 
 .class-list{
-  width: 42%;
+  width: 50%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
