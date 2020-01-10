@@ -62,7 +62,38 @@
 }
 
 .class-list{
-  width: 50%;
+  width: 45%;
+  box-sizing: border-box;
 }
 
+.react-select-container{
+  width: 250px;
+  border-radius: 15px;
+}
+
+.react-select__control{
+  width: 250px;
+  color: green;
+  border-radius: 15px;
+}
+
+.react-select__value-container{
+color: #FFAA99;
+border-radius: 15px;
+}
+
+.react-select__indicators{
+color: yellow;
+border-radius: 15px;
+}
+
+.react-select__menu{
+color: #FF9233;
+border-radius: 15px;
+}
+
+.react-select__option{
+
+
+}
 

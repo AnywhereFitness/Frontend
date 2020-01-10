@@ -4,18 +4,22 @@ import axiosWithAuth from "./API/axiosWithAuth";
 
 export default function Reservations(){
     const [Reservation, setReservation] = useState([]);
+    const workouts = []
     useEffect(() => {
         axiosWithAuth()
           .get("/api/client/reservations")
           .then(response => {
             console.log("This is the reservation list ", response);
             const data = response.data;
-            response.data.forEach(item => {
+            console.log("These are all the classes", data)
+            data.forEach(item => {
                 axiosWithAuth()
                 .get(`/api/classes/${item.classId}`)
-                .then(res =>
-                  setReservation(res.data)
-                    )
+                .then(res => {
+                    workouts.push(res)
+                    console.log("These are the workouts", workouts)
+                 setReservation([...workouts, res])
+                 })
                 
             })
             
@@ -27,14 +31,21 @@ export default function Reservations(){
       }, []);
 
           
-
+      console.log("This is the array of Reservations", Reservation)
 
     return (
         <>
-        <h1>Reservations</h1>
-        <h2>{Reservation.type}</h2>
-        <h3>{Reservation.name}</h3>
-        <p>{Reservation.Starttime}</p>
+        <h1>Your Reservations</h1>
+        {Reservation.map((workout, index) =>{
+            console.log("mapped workout", workout)
+           return(
+            <div>
+            <h2>{workout.data.type}</h2>
+            <h3>{workout.data.name}</h3>
+            <p>{workout.data.startTime}</p>
+            </div>
+           );
+        })}
         </>
     )
 }
