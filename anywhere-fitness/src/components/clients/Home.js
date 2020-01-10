@@ -117,6 +117,8 @@ function Home() {
         <Listed>
           <ListedI>About</ListedI>
           <ListedI>Welcome, {firstName}!</ListedI>
+          <ListedI>Log Out</ListedI>
+
         </Listed>
       </section>
       <div className="select-bar">
