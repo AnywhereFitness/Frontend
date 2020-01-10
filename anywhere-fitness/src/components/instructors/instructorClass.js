@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
+
 const InstructorClass = props => {
   return (
     <div className="instructor-class">
@@ -36,6 +39,7 @@ const InstructorClass = props => {
         <button className="view-details-btn">View Details</button>
       </Link>
     </div>
+    
   );
 };
 

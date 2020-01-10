@@ -1,8 +1,22 @@
-import React, { Component } from "react";
+import React, { Component ,useState, useEffect}  from "react";
 import { connect } from "react-redux";
 import { createClass } from "../../actions";
 import cookie from "react-cookies";
 import { Link } from "react-router-dom";
+
+
+const [state, setState]= useState({});
+useEffect(() =>{
+  axios
+  .get("https://weightlifting-journal.herokuapp.com/")
+  .then(response =>{
+      console.log(response.data)
+      setState(response.data)
+  })
+  .catch(error =>{
+      console.log(error);
+  })
+},[]);
 
 export class AddInstructorClass extends Component {
       state = {
@@ -65,6 +79,7 @@ export class AddInstructorClass extends Component {
             this.hanldeSubmit(e);
           }}
         >
+        {/* <AH> */}
           <Link to="/instructor/home">
             <button className="back-btn">{`<--`} Back to Home</button>
           </Link>
@@ -189,10 +204,13 @@ export class AddInstructorClass extends Component {
              }}
             >Add Class</button>
         </form>
+        <span className="myaxios">{state}></span>
       </div>
     );
   }
 }
+
+
 
 const mapStateToProps = state => {
   return {
@@ -205,3 +223,5 @@ export default connect(
   mapStateToProps,
   { createClass }
 )(AddInstructorClass);
+
+
