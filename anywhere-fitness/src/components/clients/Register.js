@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../clients/API/axiosWithAuth";
 import mountainyoga from "./img/mountainyoga.jpg";
-const UserForm = () => {
+import {withFormik, Form, Field} from "formik"
+import * as Yup from 'yup'
+
+
+const UserForm = ({ values, errors, touched, status}) => {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -9,6 +13,10 @@ const UserForm = () => {
     password: "",
     role: ""
   });
+  useEffect(() => {
+    console.log("status has changed", status);
+    status && setUser(user => [...user, status]);
+  }, [status]);
 
   const handleChange = e => {
     setUser({
@@ -16,6 +24,8 @@ const UserForm = () => {
       [e.target.name]: e.target.value
     });
   };
+
+
 
   const onSubmit = e => {
     e.preventDefault();
@@ -46,36 +56,37 @@ const UserForm = () => {
       
     <div className="form-half">
       <h1>Register Here</h1>
-      <form onSubmit={onSubmit}>
-        <input
+      <Form>
+        <Field
           type="text"
           name="firstName"
           placeholder="First Name"
           value={user.firstName}
           onChange={handleChange}
         />
-        <input
+        <Field
           type="text"
           name="lastName"
           placeholder="Last Name"
           value={user.lastName}
           onChange={handleChange}
         />
-        <input
+        <Field
           type="text"
           name="email"
           placeholder="email"
           value={user.email}
           onChange={handleChange}
         />
-        <input
+        {touched.email && errors.email}
+        <Field
           type="password"
           name="password"
           placeholder="password"
           value={user.password}
           onChange={handleChange}
         />
-        <input
+        <Field
           type="text"
           name="role"
           placeholder="role"
@@ -85,10 +96,41 @@ const UserForm = () => {
         <button className="register-btn" type="submit">
           Create Your Account
         </button>
-      </form>
+      </Form>
     </div>
     </div>
     </>
   );
 };
-export default UserForm;
+
+const ValidatedUserForm = withFormik ({
+  mapPropsToValues({ FirstName, lastName, email, password, role }) {
+    return{
+      firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          role: ""
+    };
+  },
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required(),
+    email: Yup.string().email("invalid Email").required(),
+    password: Yup.string().required(),
+    role: Yup.string().required("Please specify a role"),
+  }),
+handleSubmit(values, { setStatus, resetForm}) {
+  console.log("submitting", values);
+  axiosWithAuth
+    .post("/api/auth/register", values)
+    .then(res => {
+      console.log("Sucessful post, new user registered", res);
+      setStatus(res.data);
+      resetForm()
+    })
+    .catch(err => console.log(err.response))
+  }
+})(UserForm);
+
+
+export default ValidatedUserForm;

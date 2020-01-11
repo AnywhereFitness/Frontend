@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axiosWithAuth from "./API/axiosWithAuth";
-import boxer from "./img/boxing.jpg"
+import mountainyoga from "./img/mountainyoga.jpg"
 
 export default function ClassCards(props) {
 
@@ -53,8 +53,8 @@ export default function ClassCards(props) {
     width: 195px;
     height: 22px;
     color: #1b1a1a;
-    background-color: #bdbdbd;
-    border: none;
+    background-color: white;
+    border: .5px solid #1b1a1a;
     border-radius: 5px;
     font-family: raleway;
     font-weight: bold;
@@ -65,7 +65,7 @@ export default function ClassCards(props) {
     width: 195px;
     height: 22px;
     color: #1b1a1a;
-    background-color: #bdbdbd;
+    background-color: #FF9233;
     border: none;
     border-radius: 4px;
     font-family: raleway;
@@ -105,7 +105,7 @@ const Reservaton = event => {
   return (
     <Clas>
       <div className="class-img-container">
-       <img  className="class-img" src={boxer} alt="workout"></img>
+       <img  className="class-img" src={mountainyoga} alt="workout"></img> :
       </div>
       <div className="category-container">
       <Category> {clas.type}</Category>
@@ -113,7 +113,6 @@ const Reservaton = event => {
       <Location>location: {clas.location}</Location>
       </div>
       <Description>
-        
         <p>{clas.description}</p>
       <Editbtn onClick={Reservaton}>Reserve</Editbtn>
       <Deletebtn onClick={()=>deleteReservation(clas)}>Delete Reservation</Deletebtn>

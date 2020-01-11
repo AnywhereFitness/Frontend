@@ -56,9 +56,10 @@ const Listed = styled.ul`
   justify-content: space-evenly;
 `;
 const ListedI = styled.li`
-  margin: 0 4%;
+  margin:  4%;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: .8rem;
+
 `;
 
 function Home() {

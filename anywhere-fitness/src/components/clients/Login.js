@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosWithAuth from "./API/axiosWithAuth";
 import axios from 'axios' //Michael: imported axios
+import {Link} from "react-router-dom"
 import mountainyoga from "./img/mountainyoga.jpg"
 const Login = props => {
   // make a post request to retrieve a token from the api
@@ -52,7 +53,7 @@ const Login = props => {
           onChange={handleChange}
           placeholder="password"
         />
-        <button>Log in</button>
+        <Link to={"/clienthome"}><button>Log in</button></Link>
       </form>
       </div>
       </div>
